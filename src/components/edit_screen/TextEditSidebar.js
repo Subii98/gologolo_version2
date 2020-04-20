@@ -78,8 +78,26 @@ class TextEditSidebar extends Component {
 
     handleTextChange = (event) => {
         let inputtext = "";
-        inputtext = prompt("Input text");
-        this.setState({text : inputtext}, this.completeUserEditing);
+        inputtext = prompt("Enter a name for your logo: ");
+        if(inputtext.length===0){
+            alert("Illegal name");
+            return;
+        }
+        if(inputtext.trim().length===0){
+            alert("Illegal name");
+            return;
+        }
+        if(inputtext===this.props.logo.text){
+            alert("Duplicate Name");
+            return;
+        }
+        if(inputtext.toLowerCase()===this.props.logo.text.toLowerCase()){
+            alert("Duplicate Name");
+            return;
+        }
+        else{
+            this.setState({text : inputtext}, this.completeUserEditing);
+        }
     }
    
 
